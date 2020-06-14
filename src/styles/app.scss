@@ -12,6 +12,11 @@ body {
   font-style: bold;
   src: url('../assets/fonts/chantilly-serial-bold.ttf')
 }
+@font-face {
+  font-family: Johnston ITC;
+  font-style: normal;
+  src: url('../assets/fonts/johnston_itc_medium.ttf')
+}
 
 ::-webkit-scrollbar {
   background-color: #888888;
@@ -33,16 +38,17 @@ body {
   height: 3rem;
   -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3); 
   box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3);
+  background-color: #ccc;
 
   .header {
     margin: auto;
-    max-width: 1000px;
+    max-width: 1500px;
+    height: 100%;
     display: flex;
 
-    a {
+    .title-link {
       padding-left: 20px;
-      top: 0.6rem;
-      position: relative;
+      margin: auto 0;
       text-decoration: none!important;
       
       .logo {
@@ -50,7 +56,6 @@ body {
         color: #3AB648;
         font-size: 20px;
         display: flex;
-        // transition: ease-in 0.5s;
         
         span {
           font-family: Chantilly Serial;
@@ -58,10 +63,16 @@ body {
           font-size: 23.5px;
         }
       }
+    }
 
-      a:hover .logo {
-        transform: transformX(10px);
-      }
+    .subtitle {
+      font-family: Johnston ITC;
+      color: white;
+      white-space: nowrap;
+      font-size: 15px;
+      letter-spacing: 1px;
+      padding-left: 10px;
+      margin: auto 0;
     }
 
     nav {
@@ -71,12 +82,13 @@ body {
       list-style: none;
 
       li {
-        margin: 0 0.5rem;
-        text-align: center;
+        padding: 0 0.5rem;
+        // text-align: center;
         
-        a {
-          padding: 0;
-          top: 0.6rem;
+        .nav-link {
+          // display: inline-block;
+          // margin: auto 0;
+          top: 0.56rem;
           position: relative;
           text-decoration: none;
           color: black;
@@ -92,11 +104,11 @@ body {
           transition: width ease-in 0.2s;
         }
 
-        a:hover + div {
+        .nav-link:hover + div {
           width: 100%;
         }
 
-        a:hover {
+        .nav-link:hover {
           color: rgba(0, 0, 0, 0.7);
         }
       }

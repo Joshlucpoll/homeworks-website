@@ -1,4 +1,5 @@
 import React from "react";
+import { AnimatePresence } from "framer-motion";
 import {
   BrowserRouter as Router,
   Route,
@@ -8,6 +9,7 @@ import {
 
 // Pages
 import Home from "./pages/home";
+import Services from "./pages/services";
 
 import "./styles/app.scss";
 // import Logo from "./assets/img/homeworks_logo_title.jpg";
@@ -19,51 +21,39 @@ class App extends React.Component {
         
         <div className="header-container">
           <div className="header">
-            <Link to="/">
+            <Link className="title-link" to="/">
               <div className="logo">HOME<span>WORKS</span></div>
             </Link>
+            <div className="subtitle">PROPERTY IMPROVEMENTS</div>
             <nav className="nav-bar">
               <li>
-                <Link to="/">Home</Link>
+                <Link className="nav-link" to="/">Home</Link>
                 <div className="underline"/>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <Link className="nav-link" to="/services">Services</Link>
                 <div className="underline"/>
-              </li>
-              <li>
-                <Link to="/users">Users</Link>
-                <div className="under line"/>
               </li>
             </nav>
           </div>
         </div>
-
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
+        <Route 
+          render={({ location }) => (
+          <AnimatePresence exitBeforeEnter={true}>
+            <Switch location={location} key={location.pathname}>
+              <Route path="/services">
+                <Services/>
+              </Route>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </AnimatePresence>
+          )}
+        />
       </Router>
     );
   }
 }
-
-
-
-function About() {
-  return <h2>About</h2>;
-}
-
-function Users() {
-  return <h2>Users</h2>;
-}
-
 
 export default App;

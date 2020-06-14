@@ -1,9 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import "../styles/home.scss";
+import "../styles/services.scss";
 
-function Home() {
+function Services() {
   return(
     <motion.div 
       className="body-wrapper"
@@ -31,4 +31,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Services;
