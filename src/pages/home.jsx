@@ -27,6 +27,7 @@ function Home() {
       <p>
         If you want property improvements in Leicestershire then we can help. Whether you need a minor repair or a full house refurbishment we are able to undertake the work using skilled craftsmen at a very competitive price. No job is ever too small. Our aim is to provide a one-stop shop for clients – no more hours wasted searching for reliable and affordable tradesmen.
       </p>
+
     </motion.div>
   );
 }
