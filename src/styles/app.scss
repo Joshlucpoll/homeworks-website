@@ -1,12 +1,31 @@
-body {
-  font-family: 'Acherus Grotesque', sans-serif;
-  overflow-x: hidden;
-}
-
 :root {
   --green-accent: #3AB648;
   --blue-accent: #293991;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --body-colour: #181a1b;
+    --text-colour: white;
+    --header-colour: rgb(39, 41, 43);
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --body-colour: #ccc;
+    --text-colour: black;
+    --header-colour: #eee;
+  }
+}
+
+
+body {
+  font-family: 'Acherus Grotesque', sans-serif;
+  overflow-x: hidden;
+  background-color: var(--body-colour);
+}
+
 
 @font-face {
   font-family: Papyrus;
@@ -45,13 +64,13 @@ body {
 }
 
 .header-container {
+  top: 0;
   position: sticky;
   font-size: 18px;
   width: 100%;
   height: 3rem;
-  // -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.3); 
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
-  background-color: #ccc;
+  background-color: var(--header-colour);
 
   .header {
     margin: auto;
@@ -69,18 +88,20 @@ body {
       }
     }
 
-    .title-link:hover {
-      transform: scale(1.05);
-    }
+    @media screen and (min-width: 800px) {
+      .title-link:hover {
+        transform: scale(1.05);
+      }
 
-    .title-link:hover + .subtitle {
-      transform: translateY(0);
-      opacity: 1;
+      .title-link:hover + .subtitle {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
-
+    
     .subtitle {
       font-family: Johnston ITC;
-      color: black;
+      color: var(--text-colour);
       white-space: nowrap;
       font-size: 15px;
       letter-spacing: 1px;
@@ -91,6 +112,12 @@ body {
       transition: ease-in 100ms;
     }
 
+    @media screen and (max-width: 800px) {
+      .subtitle {
+        display: none;
+      }
+    }
+
     nav {
       padding-right: 20px;
       margin-left: auto;;
@@ -99,16 +126,6 @@ body {
 
       li {
         padding: 0 0.5rem;
-        
-        .nav-link {
-          top: 0.7rem;
-          position: relative;
-          z-index: 1;
-          text-decoration: none;
-          color: black;
-          opacity: 0.7;
-          transition: width ease-in 0.2s;
-        }
 
         button {
           padding: 0;
@@ -116,46 +133,83 @@ body {
           background: none;
           outline: none;
           font-family: 'Acherus Grotesque', sans-serif;
-          font-size: 1rem;
+          font-size: 18px;
           cursor: pointer;
         }
-
-        div {
-          top: 8px;
+        .nav-link {
+          top: 0.7rem;
           position: relative;
-          height: 2px;
-          width: 0;
-          background-color: #293991;
-          border-radius: 2px;
-          transition: width ease-in 0.2s;
-        }
-
-        .nav-link:hover + div {
-          width: 100%;
-        }
-
-        .nav-link:hover {
-          opacity: 1;
+          z-index: 1;
+          text-decoration: none;
+          color: var(--text-colour);
+          opacity: 0.7;
+          transition: ease-in 0.2s;
         }
       }
     }
   }
 
+  .background-filter {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
   .services-container {
-    position: absolute;
+    position: fixed;
     top: 4rem;
     margin-bottom: 1rem;
     right: 0;
-    height: calc(100vh - 5rem);
-    width: 100px;
+    max-height: 100%;
+    max-width: 100%;
     border-radius: 20px 0 0 20px;
-    background-color: white;
+    background-color: var(--header-colour);
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 
-    // z-index: 10;
 
     .services {
       padding: 20px;
+
+      h2 {
+        margin: 0;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          padding: 2px;
+        }
+      }
     }
   }
+}
+
+footer {
+  width: 100vw;
+  height: 2rem;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--header-colour);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .copyright {
+    color: var(--text-colour);
+    font-size: 0.7rem;
+  }
+}
+
+p {
+  color: var(--text-colour);
+}
+h1 {
+  color: var(--text-colour);
+}
+h2 {
+  color: var(--text-colour);
 }

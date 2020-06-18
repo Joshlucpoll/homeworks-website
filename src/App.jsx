@@ -9,6 +9,8 @@ import {
 
 import Logo from "./assets/img/logo.png";
 
+import NavLink from "./components/navLink";
+
 // Pages
 import Home from "./pages/home";
 import Services from "./pages/services";
@@ -29,7 +31,11 @@ class App extends React.Component {
   serviceButtonHandle() {
     this.setState(state => ({
       isServicesOpen: !this.state.isServicesOpen,
-    }));
+    }), this.forceUpdate());
+  }
+
+  onClick() {
+    this.setState({ isServicesOpen: false });
   }
 
   componentDidMount() {
@@ -48,7 +54,6 @@ class App extends React.Component {
   render() {
     return(
       <Router>
-        
         <div className="header-container">
           <div className="header">
               <Link className="title-link" to="/">
@@ -56,36 +61,59 @@ class App extends React.Component {
               </Link>
             <div className="subtitle">PROPERTY IMPROVEMENTS</div>
             <nav className="nav-bar">
+              <NavLink label="Home" to="/" onClick={() => this.onClick()}/>
               <li>
-                <Link className="nav-link" to="/">Home</Link>
-                <div className="underline"/>
+                <button onClick={() => this.serviceButtonHandle()} className="nav-link" >Services
+                  <div className="underline"/>
+                </button>
               </li>
-              <li>
-                <button onClick={() => this.serviceButtonHandle()} className="nav-link" >Services</button>
-                <div className="underline"/>
-              </li>
-              <li>
-                <Link className="nav-link" to="/contact">Contact</Link>
-                <div className="underline"/>
-              </li>
+              <NavLink label="Contact" to="contact" onClick={() => this.onClick()}/>
             </nav>
           </div>
           <AnimatePresence>
             {this.state.isServicesOpen && 
-              <motion.div
-                className="services-container"
-                initial={{ x: "150%" }}
-                animate={{ x: 0 }}
-                exit={{ x: "150%" }}
-                transition={{ ease: "circOut", duration: 0.5 }}
-              >
-                <div className="services">
-                  <div>Sample text</div>
-                </div>
-              </motion.div>
+              <div>
+                <motion.div
+                  className="background-filter"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ ease: "circOut", duration: 0.5, delay: 0.2 }}
+                  
+                />
+                <motion.div
+                  className="services-container"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{ x: "150%" }}
+                  transition={{ ease: "circOut", duration: 0.5, delay: 0.2 }}
+                >
+                  <div className="services">
+                    <h2 className="title">Our Services</h2>
+                    <ul>
+                      <NavLink label="General Repairs" to="/services/general-repairs" onClick={() => this.onClick()}/>
+                      <NavLink label="Sash Windows" to="/services/sash-windows" onClick={() => this.onClick()}/>
+                      <NavLink label="Plumbing" to="/services/plumbing" onClick={() => this.onClick()}/>
+                      <NavLink label="Electrical Work" to="/services/electrical-work" onClick={() => this.onClick()}/>
+                      <NavLink label="Plastering" to="/services/plastering" onClick={() => this.onClick()}/>
+                      <NavLink label="Tiling" to="/services/tiling" onClick={() => this.onClick()}/>
+                      <NavLink label="Painting and Decorating" to="/services/painting-and-decorating" onClick={() => this.onClick()}/>
+                      <NavLink label="Bathrooms" to="/services/bathrooms" onClick={() => this.onClick()}/>
+                      <NavLink label="Kitchens" to="/services/kitchens" onClick={() => this.onClick()}/>
+                      <NavLink label="Flooring" to="/services/flooring" onClick={() => this.onClick()}/>
+                      <NavLink label="Handyman Services" to="/services/handyman-services" onClick={() => this.onClick()}/>
+                    </ul>
+                  </div>
+                </motion.div>
+              </div>
             }
           </AnimatePresence>
         </div>
+        <footer>
+          <div className="copyright">Copyright © HomeWorks Leicester {new Date().getFullYear()} - All Rights Reserved.
+          Developed by <a href="https://joshlucpoll.com">Josh Pollard</a>
+          </div>
+        </footer>
 
         <Route 
           render={({ location }) => (
