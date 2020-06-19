@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 
 import Logo from "./assets/img/logo.png";
+import SquareLogo from "./assets/img/square-homeworks-logo.png";
 
 import NavLink from "./components/navLink";
 
@@ -16,6 +17,11 @@ import Home from "./pages/home";
 import Services from "./pages/services";
 
 import "./styles/app.scss";
+
+const variants = {
+  close: {},
+  open: {}
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -55,21 +61,35 @@ class App extends React.Component {
     return(
       <Router>
         <div className="header-container">
-          <div className="header">
+          {this.state.width >= 800 &&
+            <div className="header-desktop">
+                <Link className="title-link" to="/">
+                  <img className="logo" alt="Logo" src={Logo}></img>
+                </Link>
+              <div className="subtitle">PROPERTY IMPROVEMENTS</div>
+              <nav className="nav-bar">
+                <NavLink label="Home" to="/" onClick={() => this.onClick()}/>
+                <li>
+                  <button onClick={() => this.serviceButtonHandle()} className="nav-link" >Services
+                    <div className="underline"/>
+                  </button>
+                </li>
+                <NavLink label="Contact" to="contact" onClick={() => this.onClick()}/>
+              </nav>
+            </div>
+          }
+          {this.state.width < 800 &&
+            <div className="header-mobile">
               <Link className="title-link" to="/">
-                <img className="logo" alt="Logo" src={Logo}></img>
+                <img className="logo" alt="Logo" src={SquareLogo}></img>
               </Link>
-            <div className="subtitle">PROPERTY IMPROVEMENTS</div>
-            <nav className="nav-bar">
-              <NavLink label="Home" to="/" onClick={() => this.onClick()}/>
-              <li>
-                <button onClick={() => this.serviceButtonHandle()} className="nav-link" >Services
-                  <div className="underline"/>
-                </button>
-              </li>
-              <NavLink label="Contact" to="contact" onClick={() => this.onClick()}/>
-            </nav>
-          </div>
+              <button className="hamburger-container" onClick={() => this.serviceButtonHandle()}>
+                <div className="line-one"></div>
+                <div className="line-two"></div>
+                <div className="line-three"></div>
+              </button>
+            </div>
+          }
           <AnimatePresence>
             {this.state.isServicesOpen && 
               <div>
@@ -79,14 +99,14 @@ class App extends React.Component {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ ease: "circOut", duration: 0.5, delay: 0.2 }}
-                  
+                  onClick={() => this.onClick()}
                 />
                 <motion.div
                   className="services-container"
                   initial={{ x: "100%" }}
                   animate={{ x: 0 }}
                   exit={{ x: "150%" }}
-                  transition={{ ease: "circOut", duration: 0.5, delay: 0.2 }}
+                  transition={{ ease: "circOut", duration: 0.5, delay: 0.1 }}
                 >
                   <div className="services">
                     <h2 className="title">Our Services</h2>
@@ -109,11 +129,11 @@ class App extends React.Component {
             }
           </AnimatePresence>
         </div>
-        <footer>
-          <div className="copyright">Copyright © HomeWorks Leicester {new Date().getFullYear()} - All Rights Reserved.
-          Developed by <a href="https://joshlucpoll.com">Josh Pollard</a>
+        {/* <footer>
+          <div className="copyright">&copy; HomeWorks Leicester {new Date().getFullYear()}
+          . Developed by <a href="https://joshlucpoll.com">Josh Pollard</a>
           </div>
-        </footer>
+        </footer> */}
 
         <Route 
           render={({ location }) => (
