@@ -30,6 +30,7 @@ const menuItems = {
 
 
 class SideMenu extends React.Component {
+
   render() {
     return(
       <AnimatePresence>
@@ -51,7 +52,9 @@ class SideMenu extends React.Component {
               transition={{ ease: "circOut", duration: 0.5 }}
             >
               <div className="services">
-                <img src={BackArrow} alt="back arrow" className="back-arrow" onClick={() => this.props.changeMenu("root")}/>
+                {this.props.currentSideMenu !== "root" &&
+                  <img src={BackArrow} alt="back arrow" className="back-arrow" onClick={this.props.backArrow}/>
+                }
                 <h2 className="title">{titles[this.props.currentSideMenu]}</h2>
                 <ul>
                   {menuItems[this.props.currentSideMenu].map((item) =>

@@ -32,19 +32,18 @@ class App extends React.Component {
   }
   
   changeMenu(menu) {
+    this.setState({
+      isSideMenuOpen: true,
+      currentSideMenu: menu,
+    });
+  }
+  
+  backArrow() {
     if (this.state.width < 800) {
-      if (menu === this.state.currentSideMenu) {
-        this.closeMenu()
-      }
-      else {
-        this.setState({
-          isSideMenuOpen: true,
-          currentSideMenu: menu,
-        });
-      }
+      this.setState({ currentSideMenu: "root" });
     }
     else {
-      this.closeMenu()
+      this.setState({ isSideMenuOpen: false });
     }
   }
 
@@ -116,6 +115,7 @@ class App extends React.Component {
             closeSideMenu={() => this.closeMenu()}
             currentSideMenu={this.state.currentSideMenu}
             changeMenu={(menu) => this.changeMenu(menu)}
+            backArrow={() => this.backArrow()}
           />
         </div>
         {/* <footer>
