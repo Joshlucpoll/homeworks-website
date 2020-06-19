@@ -211,19 +211,20 @@ body {
       padding: 0;
       border: none;
       outline: none;
-
+      position: relative;
       background-color: rgba(0,0,0,0);
 
       div {
         width: 2rem;
-        height: 1px;
+        height: 3px;
         background-color: var(--text-colour);
         opacity: 0.7;
+        position: absolute;
+        transition: opacity ease 0.2s;
       }
-
-      // .line-one {
-
-      // }
+      &:hover div {
+        opacity: 0.9;
+      }
     }
   }
 

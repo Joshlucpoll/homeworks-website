@@ -10,6 +10,7 @@ import {
 import Logo from "./assets/img/logo.png";
 import SquareLogo from "./assets/img/square-homeworks-logo.png";
 
+import SideMenu from "./components/sideMenu";
 import NavLink from "./components/navLink";
 
 // Pages
@@ -18,30 +19,37 @@ import Services from "./pages/services";
 
 import "./styles/app.scss";
 
-const variants = {
-  close: {},
-  open: {}
-}
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
       width: 0, 
       height: 0,
-      isServicesOpen: false,
+      isSideMenuOpen: false,
+      currentSideMenu: "root",
     };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   
-  serviceButtonHandle() {
-    this.setState(state => ({
-      isServicesOpen: !this.state.isServicesOpen,
-    }), this.forceUpdate());
+ changeMenu(menu) {
+    this.setState({
+      isSideMenuOpen: true,
+      currentSideMenu: menu,
+    });
   }
 
-  onClick() {
-    this.setState({ isServicesOpen: false });
+  closeMenu() {
+    this.setState({ isSideMenuOpen: false });
+  }
+
+  openMenu() {
+    this.setState({ isSideMenuOpen: true });
+  }
+
+  switchMenu() {
+    this.setState(state => ({
+      isSideMenuOpen: !this.state.isSideMenuOpen,
+    }));
   }
 
   componentDidMount() {
@@ -68,13 +76,13 @@ class App extends React.Component {
                 </Link>
               <div className="subtitle">PROPERTY IMPROVEMENTS</div>
               <nav className="nav-bar">
-                <NavLink label="Home" to="/" onClick={() => this.onClick()}/>
+                <NavLink label="Home" to="/" onClick={() => this.closeMenu()}/>
                 <li>
-                  <button onClick={() => this.serviceButtonHandle()} className="nav-link" >Services
+                  <button onClick={() => this.changeMenu("services")} className="nav-link" >Services
                     <div className="underline"/>
                   </button>
                 </li>
-                <NavLink label="Contact" to="contact" onClick={() => this.onClick()}/>
+                <NavLink label="Contact" to="contact" onClick={() => this.closeMenu()}/>
               </nav>
             </div>
           }
@@ -83,51 +91,14 @@ class App extends React.Component {
               <Link className="title-link" to="/">
                 <img className="logo" alt="Logo" src={SquareLogo}></img>
               </Link>
-              <button className="hamburger-container" onClick={() => this.serviceButtonHandle()}>
-                <div className="line-one"></div>
-                <div className="line-two"></div>
-                <div className="line-three"></div>
+              <button className="hamburger-container" onClick={() => this.switchMenu()}>
+                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: 45} : {y: 12, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-one"/>
+                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: -45} : {y: 0, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-two"/>
+                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: 45} : {y: -12, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-three"/> 
               </button>
             </div>
           }
-          <AnimatePresence>
-            {this.state.isServicesOpen && 
-              <div>
-                <motion.div
-                  className="background-filter"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ ease: "circOut", duration: 0.5, delay: 0.2 }}
-                  onClick={() => this.onClick()}
-                />
-                <motion.div
-                  className="services-container"
-                  initial={{ x: "100%" }}
-                  animate={{ x: 0 }}
-                  exit={{ x: "150%" }}
-                  transition={{ ease: "circOut", duration: 0.5, delay: 0.1 }}
-                >
-                  <div className="services">
-                    <h2 className="title">Our Services</h2>
-                    <ul>
-                      <NavLink label="General Repairs" to="/services/general-repairs" onClick={() => this.onClick()}/>
-                      <NavLink label="Sash Windows" to="/services/sash-windows" onClick={() => this.onClick()}/>
-                      <NavLink label="Plumbing" to="/services/plumbing" onClick={() => this.onClick()}/>
-                      <NavLink label="Electrical Work" to="/services/electrical-work" onClick={() => this.onClick()}/>
-                      <NavLink label="Plastering" to="/services/plastering" onClick={() => this.onClick()}/>
-                      <NavLink label="Tiling" to="/services/tiling" onClick={() => this.onClick()}/>
-                      <NavLink label="Painting and Decorating" to="/services/painting-and-decorating" onClick={() => this.onClick()}/>
-                      <NavLink label="Bathrooms" to="/services/bathrooms" onClick={() => this.onClick()}/>
-                      <NavLink label="Kitchens" to="/services/kitchens" onClick={() => this.onClick()}/>
-                      <NavLink label="Flooring" to="/services/flooring" onClick={() => this.onClick()}/>
-                      <NavLink label="Handyman Services" to="/services/handyman-services" onClick={() => this.onClick()}/>
-                    </ul>
-                  </div>
-                </motion.div>
-              </div>
-            }
-          </AnimatePresence>
+          <SideMenu isSideMenuOpen={this.state.isSideMenuOpen} closeSideMenu={() => this.closeMenu()} currentSideMenu={this.state.currentSideMenu} changeMenu={(menu) => this.changeMenu(menu)}/>
         </div>
         {/* <footer>
           <div className="copyright">&copy; HomeWorks Leicester {new Date().getFullYear()}
