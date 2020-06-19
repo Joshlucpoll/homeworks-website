@@ -94,6 +94,11 @@ class App extends React.Component {
                     <div className="underline"/>
                   </button>
                 </li>
+                <li>
+                  <button onClick={() => this.changeMenu("projects")} className="nav-link" >Projects
+                    <div className="underline"/>
+                  </button>
+                </li>
                 <NavLink label="Contact" to="contact" onClick={() => this.closeMenu()}/>
               </nav>
             </div>
@@ -104,9 +109,9 @@ class App extends React.Component {
                 <img className="logo" alt="Logo" src={SquareLogo}></img>
               </Link>
               <button className="hamburger-container" onClick={() => this.switchMenu()}>
-                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: 45} : {y: 12, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-one"/>
+                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: 45} : {y: 10, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-one"/>
                 <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: -45} : {y: 0, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-two"/>
-                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: 45} : {y: -12, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-three"/> 
+                <motion.div animate={ this.state.isSideMenuOpen ? {y: 0, rotate: 45} : {y: -10, rotate: 0} } transition={{type: "spring", stiffness: 400, damping: 40}} className="line-three"/> 
               </button>
             </div>
           }

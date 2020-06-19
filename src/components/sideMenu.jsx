@@ -7,6 +7,7 @@ import BackArrow from "../assets/img/back_arrow.svg";
 const titles = {
   root: "Menu",
   services: "Our Services",
+  projects: "Our Projects"
 }
 
 const menuItems = {
@@ -25,7 +26,12 @@ const menuItems = {
     {label: "Kitchens", path: "/services/kitchens"},
     {label: "Flooring", path: "/services/flooring"},
     {label: "Handyman Services", path: "/services/handyman-services"},
-  ]
+  ],
+  projects: [
+    {label: "Kitchen Installation", path: "/projects/kitchen-installation"},
+    {label: "Courtyard Garden", path: "/projects/courtyard-garden"},
+    {label: "Split-level Patio", path: "/projects/split-level-patio"},
+  ],
 }
 
 
@@ -41,15 +47,16 @@ class SideMenu extends React.Component {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ ease: "circOut", duration: 0.5 }}
+              transition={{ ease: "circOut", duration: 0.3 }}
               onClick={this.props.closeSideMenu}
             />
             <motion.div
               className="services-container"
+              layoutTransition={{ type: "tween", duration: 0.1 }}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "150%" }}
-              transition={{ ease: "circOut", duration: 0.5 }}
+              transition={{ ease: "circOut", duration: 0.3 }}
             >
               <div className="services">
                 {this.props.currentSideMenu !== "root" &&
@@ -61,9 +68,19 @@ class SideMenu extends React.Component {
                     <NavLink label={item["label"]} to={item["path"]} onClick={this.props.closeSideMenu}/>
                   )}
                   {this.props.currentSideMenu === "root" &&
-                    <button className="nav-link" onClick={() => this.props.changeMenu("services")}>Services
-                      <div className="underline"/>
-                    </button>
+                    <div>
+                      <li>
+                        <button className="nav-link" onClick={() => this.props.changeMenu("services")}>Services
+                          <div className="underline"/>
+                        </button>
+                      </li>
+                      <li>
+                        <button className="nav-link" onClick={() => this.props.changeMenu("projects")}>Projects
+                          <div className="underline"/>
+                        </button>
+                      </li>
+                        <NavLink label="Contact" to="/contact" onClick={this.props.closeSideMenu}/>
+                    </div>
                   }
                 </ul>
               </div>

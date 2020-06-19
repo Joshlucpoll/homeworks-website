@@ -1,6 +1,9 @@
 li {
-  
+  // float: left;
+  width: min-content;
+
   .nav-link {
+    white-space: nowrap;
     top: 0.7rem;
     position: relative;
     z-index: 1;
