@@ -166,11 +166,22 @@ body {
     background-color: var(--header-colour);
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 
+    transition: ease 0.3s;
+
 
     .services {
       padding: 20px;
 
+      .back-arrow {
+        height: 1.5rem;
+        transform: translateY(12.5%);
+        color: var(--text-colour);
+        filter: invert(1);
+      }
+      
       h2 {
+        display: inline;
+        padding-left: 10px;
         margin: 0;
       }
 
@@ -181,6 +192,43 @@ body {
 
         li {
           padding: 2px;
+        }
+
+        button {
+          padding: 0;
+          border: none;
+          background: none;
+          outline: none;
+          font-family: 'Acherus Grotesque', sans-serif;
+          font-size: 18px;
+          cursor: pointer;
+        }
+        .nav-link {
+          top: 0.7rem;
+          position: relative;
+          z-index: 1;
+          text-decoration: none;
+          color: var(--text-colour);
+          opacity: 0.7;
+          transition: ease-in 0.2s;
+
+          div {
+            position: relative;
+            height: 2px;
+            width: 0;
+            background-color: #293991;
+            border-radius: 2px;
+            transition: width ease-in 0.2s;
+          }
+        }
+      
+      
+        .nav-link:hover div {
+          width: 100%;
+        }
+      
+        .nav-link:hover {
+          opacity: 1;
         }
       }
     }
@@ -206,29 +254,34 @@ body {
     .hamburger-container {
       height: 3rem;
       width: 3rem;
+      padding-right: 20px;
       margin-left: auto;
       cursor: pointer;
       padding: 0;
       border: none;
       outline: none;
       position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: rgba(0,0,0,0);
 
       div {
+        margin: auto 0;
         width: 2rem;
         height: 3px;
+        border-radius: 2px;
         background-color: var(--text-colour);
         opacity: 0.7;
         position: absolute;
         transition: opacity ease 0.2s;
       }
+
       &:hover div {
         opacity: 0.9;
       }
     }
   }
-
-
 }
 
 

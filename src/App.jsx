@@ -31,15 +31,25 @@ class App extends React.Component {
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
   
- changeMenu(menu) {
-    this.setState({
-      isSideMenuOpen: true,
-      currentSideMenu: menu,
-    });
+  changeMenu(menu) {
+    if (this.state.width < 800) {
+      if (menu === this.state.currentSideMenu) {
+        this.closeMenu()
+      }
+      else {
+        this.setState({
+          isSideMenuOpen: true,
+          currentSideMenu: menu,
+        });
+      }
+    }
+    else {
+      this.closeMenu()
+    }
   }
 
   closeMenu() {
-    this.setState({ isSideMenuOpen: false });
+    this.setState({ isSideMenuOpen: false, currentSideMenu: "root" });
   }
 
   openMenu() {
@@ -47,9 +57,12 @@ class App extends React.Component {
   }
 
   switchMenu() {
-    this.setState(state => ({
-      isSideMenuOpen: !this.state.isSideMenuOpen,
-    }));
+    if (this.state.isSideMenuOpen) {
+      this.closeMenu()
+    }
+    else {
+      this.openMenu()
+    }
   }
 
   componentDidMount() {
@@ -98,7 +111,12 @@ class App extends React.Component {
               </button>
             </div>
           }
-          <SideMenu isSideMenuOpen={this.state.isSideMenuOpen} closeSideMenu={() => this.closeMenu()} currentSideMenu={this.state.currentSideMenu} changeMenu={(menu) => this.changeMenu(menu)}/>
+          <SideMenu
+            isSideMenuOpen={this.state.isSideMenuOpen}
+            closeSideMenu={() => this.closeMenu()}
+            currentSideMenu={this.state.currentSideMenu}
+            changeMenu={(menu) => this.changeMenu(menu)}
+          />
         </div>
         {/* <footer>
           <div className="copyright">&copy; HomeWorks Leicester {new Date().getFullYear()}

@@ -2,6 +2,7 @@ import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import NavLink from "./navLink";
+import BackArrow from "../assets/img/back_arrow.svg";
 
 const titles = {
   root: "Menu",
@@ -11,7 +12,6 @@ const titles = {
 const menuItems = {
   root: [
     {label: "Home", path: "/"},
-
   ],
   services: [
     {label: "General Repairs", path: "/services/general-repairs"},
@@ -34,8 +34,6 @@ class SideMenu extends React.Component {
     super(props);
   }
 
-
-
   render() {
     return(
       <AnimatePresence>
@@ -46,7 +44,7 @@ class SideMenu extends React.Component {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ ease: "circOut", duration: 0.5, delay: 0.2 }}
+              transition={{ ease: "circOut", duration: 0.5 }}
               onClick={this.props.closeSideMenu}
             />
             <motion.div
@@ -54,16 +52,17 @@ class SideMenu extends React.Component {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "150%" }}
-              transition={{ ease: "circOut", duration: 0.5, delay: 0.1 }}
+              transition={{ ease: "circOut", duration: 0.5 }}
             >
               <div className="services">
+                <img src={BackArrow} alt="back arrow" className="back-arrow" onClick={() => this.props.changeMenu("root")}/>
                 <h2 className="title">{titles[this.props.currentSideMenu]}</h2>
                 <ul>
                   {menuItems[this.props.currentSideMenu].map((item) =>
                     <NavLink label={item["label"]} to={item["path"]} onClick={this.props.closeSideMenu}/>
                   )}
                   {this.props.currentSideMenu === "root" &&
-                    <button onClick={() => this.props.changeMenu("services")}>Services
+                    <button className="nav-link" onClick={() => this.props.changeMenu("services")}>Services
                       <div className="underline"/>
                     </button>
                   }
