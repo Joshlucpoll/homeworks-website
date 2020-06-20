@@ -143,6 +143,24 @@ body {
           color: var(--text-colour);
           opacity: 0.7;
           transition: ease-in 0.2s;
+
+          div {
+            position: relative;
+            height: 2px;
+            width: 0;
+            background-color: #293991;
+            border-radius: 2px;
+            transition: width ease-in 0.2s;
+          }
+        }
+      
+      
+        .nav-link:hover div {
+          width: 100%;
+        }
+      
+        .nav-link:hover {
+          opacity: 1;
         }
       }
     }
