@@ -29,9 +29,9 @@ import Kitchens from "./pages/services/kitchens";
 import Flooring from "./pages/services/flooring";
 import HandymanServices from "./pages/services/handymanServices";
 
-import KitchenInstallation from "./pages/projects/kitchenInstallation";
-import CourtyardGarden from "./pages/projects/courtyardGarden";
-import SplitLevelPatio from "./pages/projects/splitLevelPatio";
+// import KitchenInstallation from "./pages/projects/kitchenInstallation";
+// import CourtyardGarden from "./pages/projects/courtyardGarden";
+// import SplitLevelPatio from "./pages/projects/splitLevelPatio";
 
 import "./styles/app.scss";
 
