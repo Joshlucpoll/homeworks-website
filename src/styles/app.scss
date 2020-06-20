@@ -3,6 +3,11 @@
   --blue-accent: #293991;
 }
 
+:root {
+  --body-colour: #ccc;
+  --text-colour: black;
+  --header-colour: #eee;
+  }
 @media (prefers-color-scheme: dark) {
   :root {
     --body-colour: #181a1b;
