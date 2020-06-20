@@ -30,22 +30,22 @@
 @font-face {
   font-family: Papyrus;
   font-style: normal;
-  src: url('../assets/fonts/PAPYRUS.TTF')
+  src: url(../assets/fonts/PAPYRUS.otf)
 }
 @font-face {
   font-family: Chantilly Serial;
   font-style: bold;
-  src: url('../assets/fonts/chantilly-serial-bold.ttf')
+  src: url(../assets/fonts/chantilly-serial-bold.ttf)
 }
 @font-face {
   font-family: Johnston ITC;
   font-style: normal;
-  src: url('../assets/fonts/johnston_itc_medium.ttf')
+  src: url(../assets/fonts/johnston_itc_medium.otf)
 }
 @font-face {
   font-family: Acherus Grotesque;
   font-style: normal;
-  src: url('../assets/fonts/horizon-type-acherusgrotesque-regular.otf')
+  src: url(../assets/fonts/horizon-type-acherusgrotesque-regular.otf)
 }
 
 ::-webkit-scrollbar {
@@ -71,6 +71,7 @@ body {
 .header-container {
   top: 0;
   position: sticky;
+  position: -webkit-sticky;
   font-size: 18px;
   width: 100%;
   height: 3rem;
@@ -174,10 +175,11 @@ body {
   }
 
   .background-filter {
-    position: absolute;
-    top: 3rem;
+    position: fixed;
+    z-index: -1;
+    top: 0;
     left: 0;
-    height: calc(100vh - 3rem);
+    height: 100vh;
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.3);
   }
