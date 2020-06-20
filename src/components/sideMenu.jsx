@@ -38,6 +38,13 @@ const menuItems = {
 class SideMenu extends React.Component {
 
   render() {
+    let styles
+    if (this.props.currentSideMenu ==="root") {
+      styles = { paddingLeft: 0 }
+    }
+    else {
+      styles = { paddingLeft: "34px"}
+    }
     return(
       <AnimatePresence>
         {this.props.isSideMenuOpen && 
@@ -63,18 +70,18 @@ class SideMenu extends React.Component {
                   <img src={BackArrow} alt="back arrow" className="back-arrow" onClick={this.props.backArrow}/>
                 }
                 <h2 className="title">{titles[this.props.currentSideMenu]}</h2>
-                <ul>
+                <ul style={styles}>
                   {menuItems[this.props.currentSideMenu].map((item) =>
                     <NavLink label={item["label"]} to={item["path"]} onClick={this.props.closeSideMenu}/>
                   )}
                   {this.props.currentSideMenu === "root" &&
                     <div>
-                      <li>
+                      <li className="nav-link-wrapper">
                         <button className="nav-link" onClick={() => this.props.changeMenu("services")}>Services
                           <div className="underline"/>
                         </button>
                       </li>
-                      <li>
+                      <li className="nav-link-wrapper">
                         <button className="nav-link" onClick={() => this.props.changeMenu("projects")}>Projects
                           <div className="underline"/>
                         </button>

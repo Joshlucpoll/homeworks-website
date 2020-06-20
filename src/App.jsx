@@ -15,7 +15,23 @@ import NavLink from "./components/navLink";
 
 // Pages
 import Home from "./pages/home";
-import Services from "./pages/services";
+import Contact from "./pages/contact";
+
+import GeneralRepairs from "./pages/services/generalRepairs";
+import SashWindows from "./pages/services/sashWindows";
+import Plumbing from "./pages/services/plumbing";
+import ElectricalWork from "./pages/services/electricalWork";
+import Plastering from "./pages/services/plastering";
+import Tiling from "./pages/services/tiling";
+import PaintingAndDecorating from "./pages/services/paintingAndDecorating";
+import Bathrooms from "./pages/services/bathrooms";
+import Kitchens from "./pages/services/kitchens";
+import Flooring from "./pages/services/flooring";
+import HandymanServices from "./pages/services/handymanServices";
+
+import KitchenInstallation from "./pages/projects/kitchenInstallation";
+import CourtyardGarden from "./pages/projects/courtyardGarden";
+import SplitLevelPatio from "./pages/projects/splitLevelPatio";
 
 import "./styles/app.scss";
 
@@ -99,7 +115,7 @@ class App extends React.Component {
                     <div className="underline"/>
                   </button>
                 </li>
-                <NavLink label="Contact" to="contact" onClick={() => this.closeMenu()}/>
+                <NavLink label="Contact" to="/contact" onClick={() => this.closeMenu()}/>
               </nav>
             </div>
           }
@@ -133,8 +149,41 @@ class App extends React.Component {
           render={({ location }) => (
           <AnimatePresence exitBeforeEnter={true}>
             <Switch location={location} key={location.pathname}>
-              <Route path="/services">
-                <Services/>
+              <Route exact path="/contact">
+                <Contact/>
+              </Route>
+              <Route exact path="/services/general-repairs">
+                <GeneralRepairs />
+              </Route>
+              <Route exact path="/services/sash-windows">
+                <SashWindows />
+              </Route>
+              <Route exact path="/services/plumbing">
+                <Plumbing />
+              </Route>
+              <Route exact path="/services/electrical-work">
+                <ElectricalWork />
+              </Route>
+              <Route exact path="/services/plastering">
+                <Plastering />
+              </Route>
+              <Route exact path="/services/tiling">
+                <Tiling />
+              </Route>
+              <Route exact path="/services/painting-and-decorating">
+                <PaintingAndDecorating />
+              </Route>
+              <Route exact path="/services/bathrooms">
+                <Bathrooms />
+              </Route>
+              <Route exact path="/services/kitchens">
+                <Kitchens />
+              </Route>
+              <Route exact path="/services/flooring">
+                <Flooring />
+              </Route>
+              <Route exact path="/services/handyman-services">
+                <HandymanServices />
               </Route>
               <Route path="/">
                 <Home />

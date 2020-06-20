@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import "../styles/services.scss";
 
-function Services() {
+function Contact() {
   return(
     <motion.div 
       className="body-wrapper"
@@ -31,4 +31,4 @@ function Services() {
   );
 }
 
-export default Services;
+export default Contact;

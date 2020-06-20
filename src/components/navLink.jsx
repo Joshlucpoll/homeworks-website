@@ -7,7 +7,7 @@ import "../styles/navLink.scss";
 function NavLink(props) {
 
   return(
-    <li>
+    <li className="nav-link-wrapper">
       <Link className="nav-link" onClick={props.onClick} to={props.to}>{props.label}
         <div className="underline"/>
       </Link>
