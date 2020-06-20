@@ -25,27 +25,25 @@
 }
 
 
-
-
 @font-face {
   font-family: Papyrus;
   font-style: normal;
-  src: url(../assets/fonts/PAPYRUS.otf)
+  src: url("../assets/fonts/PAPYRUS.otf")
 }
 @font-face {
   font-family: Chantilly Serial;
   font-style: bold;
-  src: url(../assets/fonts/chantilly-serial-bold.ttf)
+  src: url("../assets/fonts/Chantilly-Serial-Regular DB.otf")
 }
 @font-face {
   font-family: Johnston ITC;
   font-style: normal;
-  src: url(../assets/fonts/johnston_itc_medium.otf)
+  src: url("../assets/fonts/johnston_itc_medium.otf")
 }
 @font-face {
   font-family: Acherus Grotesque;
   font-style: normal;
-  src: url(../assets/fonts/horizon-type-acherusgrotesque-regular.otf)
+  src: url("../assets/fonts/horizon-type-acherusgrotesque-regular.otf")
 }
 
 ::-webkit-scrollbar {
@@ -91,37 +89,7 @@ body {
       transition: transform ease-in 100ms;
       
       .logo {
-        height: 2rem;
-      }
-    }
-
-    @media screen and (min-width: 800px) {
-      .title-link:hover {
-        transform: scale(1.05);
-      }
-
-      .title-link:hover + .subtitle {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-    
-    .subtitle {
-      font-family: "Johnston ITC";
-      color: var(--text-colour);
-      white-space: nowrap;
-      font-size: 15px;
-      letter-spacing: 1px;
-      padding-left: 20px;
-      margin: auto 0;
-      opacity: 0;
-      transform: translateY(100%);
-      transition: ease-in 100ms;
-    }
-
-    @media screen and (max-width: 800px) {
-      .subtitle {
-        display: none;
+        height: 3rem;
       }
     }
 
@@ -323,8 +291,6 @@ body {
 footer {
   width: 100vw;
   height: 2rem;
-  position: absolute;
-  bottom: 0;
   background-color: var(--header-colour);
   display: flex;
   justify-content: center;
@@ -333,6 +299,11 @@ footer {
   .copyright {
     color: var(--text-colour);
     font-size: 0.7rem;
+
+    a {
+      color: var(--text-colour);
+      opacity: 0.6;
+    }
   }
 }
 

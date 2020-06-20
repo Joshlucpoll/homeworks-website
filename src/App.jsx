@@ -7,7 +7,6 @@ import {
   Link,
 } from "react-router-dom";
 
-import Logo from "./assets/img/logo.png";
 import SquareLogo from "./assets/img/square-homeworks-logo.png";
 
 import SideMenu from "./components/sideMenu";
@@ -100,9 +99,8 @@ class App extends React.Component {
           {this.state.width >= 800 &&
             <div className="header-desktop">
                 <Link className="title-link" to="/">
-                  <img className="logo" alt="Logo" src={Logo}></img>
+                  <img className="logo" alt="Logo" src={SquareLogo}></img>
                 </Link>
-              <div className="subtitle">PROPERTY IMPROVEMENTS</div>
               <nav className="nav-bar">
                 <NavLink label="Home" to="/" onClick={() => this.closeMenu()}/>
                 <li>
@@ -139,11 +137,6 @@ class App extends React.Component {
             backArrow={() => this.backArrow()}
           />
         </div>
-        {/* <footer>
-          <div className="copyright">&copy; HomeWorks Leicester {new Date().getFullYear()}
-          . Developed by <a href="https://joshlucpoll.com">Josh Pollard</a>
-          </div>
-        </footer> */}
 
         <Route 
           render={({ location }) => (
@@ -192,6 +185,11 @@ class App extends React.Component {
           </AnimatePresence>
           )}
         />
+        <footer>
+          <div className="copyright">&copy; Homeworks Leicester {new Date().getFullYear()}
+          . Made by <a href="https://joshlucpoll.com" target="_blank" rel="noopener noreferrer">Josh Pollard</a>
+          </div>
+        </footer>
       </Router>
     );
   }

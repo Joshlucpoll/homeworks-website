@@ -6,9 +6,9 @@ function ElectricalWork() {
   return (
     <motion.div 
       className="body-wrapper"
-      initial={{ y: "100px", opacity: -1 }}
-      animate={{ y: 0, opacity: 1 }}
-      exit={{ y: "100px", opacity: -1 }}
+      initial={{ x: "-100px", opacity: -1 }}
+      animate={{ x: 0, opacity: 1 }}
+      exit={{ x: "100px", opacity: -1 }}
       transition={{ duration: 0.5 }}
     >
       <h1>Electrical Work</h1>
