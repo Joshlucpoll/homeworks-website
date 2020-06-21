@@ -2,7 +2,6 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import Logo from "../assets/img/homeworks-title.png";
-import HammerSpanner from "../assets/img/hammer-spanner.png"
 import Window from "../components/window";
 import Door from "../components/door";
 import "../styles/home.scss";
