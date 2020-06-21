@@ -2,7 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import Logo from "../assets/img/homeworks-title.png";
+import HammerSpanner from "../assets/img/hammer-spanner.png"
 import Window from "../components/window";
+import Door from "../components/door";
 import "../styles/home.scss";
 
 function Home() {
@@ -14,9 +16,19 @@ function Home() {
       exit={{ x: "100px", opacity: -1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="headline-container"> 
-        <Window class="window-left" delay={1}/>
-        <Window class="window-right" delay={2}/>
+      <div className="headline-container">
+        <motion.div 
+          className="back-window-left"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.8 }} 
+          transition={{ duration: 2, delay: 2 }}/>
+        <motion.div 
+          className="back-window-right"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.8 }} 
+          transition={{ duration: 2, delay: 2 }}/>
+        <Window class="window-left" delay={0}/>
+        <Window class="window-right" delay={0}/>
         <motion.img
           className="title"
           src={Logo}
@@ -33,10 +45,23 @@ function Home() {
         >
           PROPERTY IMPROVEMENTS
         </motion.div>
+        <motion.div 
+          className="back-door"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.8 }} 
+          transition={{ duration: 2, delay: 2 }}
+          />
+        <Door class="door"/>
+        <div className="door-action"></div>
       </div>
-      <p>
-        If you are looking for a friendly, professional and reliable service for all your property maintenance and renovation requirements, then call on the experts at Homeworks Property Improvements.
-      </p>
+      <div className="intro-container">
+        {/* <div className="img-container">
+          <img src={HammerSpanner} alt="Hammer and Spanner" className="hammer-spanner"/>
+        </div> */}
+        <div className="intro-info-container">
+          <p className="intro-info">If you are looking for a friendly, professional and reliable service for all your property maintenance and renovation requirements, then call on the experts at Homeworks Property Improvements.</p>
+        </div>
+      </div>
       <p>
         We provide comprehensive property maintenance, repair and refurbishment services. With years of experience in the trade and 10 years as an established company we have the skills and knowledge to make any job run smoothly. From our base in Syston we can cover the whole of Leicestershire, responding rapidly and working efficiently to complete work to schedule and within budget.
       </p>
